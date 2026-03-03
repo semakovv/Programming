@@ -100,4 +100,4 @@ try:
             w.write(args.intxt)
         w.close()
 except Exception as e:
-    print("Error")
+    print("Error srjhwrjwj")
