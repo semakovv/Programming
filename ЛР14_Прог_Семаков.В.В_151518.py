@@ -1,3 +1,4 @@
+# try?
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -29,5 +30,5 @@ try:
         lst = read.split()
         print(len(lst))
 except Exception as e:
-    print("Error", e)
+    print("Error")
 
