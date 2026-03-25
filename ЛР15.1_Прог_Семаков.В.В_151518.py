@@ -1,4 +1,4 @@
-import argparse, os, subprocess
+import argparse, os
 
 parser = argparse.ArgumentParser()
 
@@ -14,24 +14,18 @@ args = parser.parse_args()
 if args.fc:
     if args.create:
         with open(f"{os.getcwd()}\\{args.create}", "w") as w:
-            w.write("")
+            w.write(f"{args.fc}")
         w.close()
     if args.delete:
-        with open(f"{os.getcwd()}{args.delete}", "w") as w:
-            w.write("")
-        w.close()
+        os.remove(f"{os.getcwd()}\\{args.delete}")
     if args.read:
         with open(f"{os.getcwd()}\\{args.read}", "r") as r:
             read = r.read()
         r.close
         print(read)
-        print(os.getcwd())
     if args.replace:
-        with open(f"{os.getcwd()}\\{args.fc}", "w") as w:
-            w.write(f"{args.replace}")
+        with open(f"{os.getcwd()}\\{args.replace}", "w") as w:
+            w.write(f"{args.fc}")
         w.close()
     if args.search:
-        result = subprocess.run(["ls", f"{os.getcwd()}\\{args.search}"], shell=True, stdout=subprocess.PIPE)
-        print(result.stdout)
-    # for name, ex, date, len in :
-    #     print(name, ex, date, len)
+        
