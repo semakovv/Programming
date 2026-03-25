@@ -1,4 +1,4 @@
-import argparse, os, subprocess
+import argparse, os, subprocess, re
 
 parser = argparse.ArgumentParser()
 
@@ -11,6 +11,9 @@ if args.fc:
     print(date_os)
     date_subp = subprocess.run("dir", shell=True, stdout=subprocess.PIPE)
     print(date_subp.stdout.decode('cp866'))
-    date_subp1 = date_subp.stdout.strip().split("\n")
+    date_subp1 = [i.split("\r") for i in date_subp.stdout.decode('cp866').strip().split("\n") if i != ""]
+    for i in date_subp1:
+        for j in i:
+            j = re.sub(r"\s+", "-", j)
     print(date_subp1)
         
