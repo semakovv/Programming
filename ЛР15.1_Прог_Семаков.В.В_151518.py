@@ -1,4 +1,4 @@
-import argparse, os
+import argparse, os, re
 
 parser = argparse.ArgumentParser()
 
@@ -28,4 +28,10 @@ if args.fc:
             w.write(f"{args.fc}")
         w.close()
     if args.search:
-        
+        for i in os.listdir(f"{os.getcwd()}"):
+            print(i)
+            name = i.split(".")
+            print(name)
+            print(i.replace(name[-1], ""))
+            if args.search == i.replace(name[-1], ""):
+                print(i)
