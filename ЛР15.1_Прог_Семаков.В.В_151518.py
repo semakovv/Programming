@@ -1,4 +1,4 @@
-import argparse, os, re
+import argparse, os, re, datetime
 
 parser = argparse.ArgumentParser()
 
@@ -12,26 +12,44 @@ parser.add_argument("--search", "-s", type=str, help="Поиск файла")
 args = parser.parse_args()
 
 if args.fc:
-    if args.create:
+    if args.create: #Создание файла
         with open(f"{os.getcwd()}\\{args.create}", "w") as w:
             w.write(f"{args.fc}")
         w.close()
-    if args.delete:
+    if args.delete: #Удаление файла
         os.remove(f"{os.getcwd()}\\{args.delete}")
-    if args.read:
+    if args.read: #Чтение файла
         with open(f"{os.getcwd()}\\{args.read}", "r") as r:
             read = r.read()
         r.close
         print(read)
-    if args.replace:
+    if args.replace: #Изменение файла
         with open(f"{os.getcwd()}\\{args.replace}", "w") as w:
             w.write(f"{args.fc}")
         w.close()
-    if args.search:
+    if args.search: #Поиск файла
         for i in os.listdir(f"{os.getcwd()}"):
-            print(i)
-            name = i.split(".")
-            print(name)
-            print(i.replace(name[-1], ""))
-            if args.search == i.replace(name[-1], ""):
+            end_pattern = re.findall(r"\.\w+$", i)
+            end = "".join(end_pattern)
+            # name = i.replace(end, "")
+            stat = os.stat(i)
+            date_stat = stat.st_mtime
+            date_answer = datetime.date.fromtimestamp(date_stat)
+            date_request = datetime.date.strptime(args.search, "%Y-%m-%d")
+            size_stat = stat.st_size
+            size_answer = str(size_stat) + "kb"
+            size_request = str(args.search)
+            if args.search in i: #По подстроке
                 print(i)
+            elif args.search is end: #По разрешению(с точкой в начале!) === по подстроке(но вдруг py.pdf)
+                print(i)
+            elif date_request == date_answer: #По времени
+                print(i)
+            elif size_request == size_answer: #По размеру
+                print(i)
+            else:
+                print("Формы поиска:\n-'часть имени'\n-'.(расширение)'\n-'(год)-(месяц)-(день)'\n-'(размер в килобайтах)kb'")
+                break
+                
+            
+ 
