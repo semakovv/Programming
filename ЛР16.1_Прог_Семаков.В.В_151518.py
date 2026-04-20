@@ -44,3 +44,4 @@ e3.next = e4
 testlist.PrintList()
 №
 
+3
