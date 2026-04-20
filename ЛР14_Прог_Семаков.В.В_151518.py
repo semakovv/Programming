@@ -31,3 +31,4 @@ if args.count:
     lst = read.split()
     print(len(lst))
 
+3
