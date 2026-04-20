@@ -17,3 +17,4 @@ for i in lst_octets:
             flag = False
             break
             print("Неверный ввод")
+№
