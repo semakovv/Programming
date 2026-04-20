@@ -42,6 +42,3 @@ e4 = testlist.AddEnd("5")
 e3.next = e4
 
 testlist.PrintList()
-№
-
-3
