@@ -26,5 +26,3 @@ else:
             subprocess.run("start {args.run}")
         if args.kill:
             subprocess.run("taskkill /F /im {args.kill}")
-
-№
