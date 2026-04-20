@@ -30,5 +30,3 @@ if args.count:
         read = r.read()
     lst = read.split()
     print(len(lst))
-
-3
