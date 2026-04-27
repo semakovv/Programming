@@ -56,7 +56,8 @@ class Link:
     def delFromEnd(self):
         lastNode = self.head
         while lastNode.next is not None:
-            lastNode = lastNode.next
+            if lastNode.next is None:
+                lastNode = None
     
     def search(self, searchNode = None):
         lastNode = self.head
