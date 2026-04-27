@@ -56,16 +56,20 @@ class Link:
     def delFromEnd(self):
         lastNode = self.head
         while lastNode.next is not None:
-            if lastNode.next is None:
-                lastNode = None
+            postNode = lastNode
+            lastNode = lastNode.next
+        postNode.next = None
     
     def search(self, searchNode = None):
         lastNode = self.head
-        indexNone = 0
-        while searchNode is not lastNode:
-            lastNode = lastNode.next
-            indexNone += 1
-        return indexNone
+        indexNode = 0
+        while lastNode.next is not None:
+            if searchNode is lastNode:
+                return indexNode
+        
+
+            
+                
 
 testlist = Link()
 
@@ -86,5 +90,6 @@ testlist.delFromFirst()
 testlist.printList()
 
 testlist.delFromEnd()
+testlist.printList()
 
-testlist.search("2")
+print(testlist.search("2"))
