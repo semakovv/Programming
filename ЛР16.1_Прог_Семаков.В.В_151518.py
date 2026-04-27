@@ -64,8 +64,11 @@ class Link:
         lastNode = self.head
         indexNode = 0
         while lastNode.next is not None:
-            if searchNode is lastNode:
+            if searchNode == lastNode.data:
                 return indexNode
+            indexNode += 1
+            lastNode = lastNode.next
+        return -1
         
 
             
@@ -93,3 +96,4 @@ testlist.delFromEnd()
 testlist.printList()
 
 print(testlist.search("2"))
+print(testlist.search("9"))
