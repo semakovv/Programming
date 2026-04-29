@@ -76,9 +76,12 @@ cat3 = Box("3")
 cats.head.nextcat = cat2
 cat2.nextcat = cat3
 
-cats.addToEnd("4")
+cats.printBox()
 
-cat_search = cats.get(2)
+cat_search = cats.get(2), cats.contains("1"), cats.contains("4")
+
 print(cat_search)
+
+cats.addToEnd("4")
 
 cats.printBox()
