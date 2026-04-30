@@ -1,8 +1,7 @@
 from collections import deque
 
 stack = deque()
-num = 0
-def oper(op):
+def oper(op = None, num = 0):
     while op != "stop":
         stack.append(op)
         if op[0] == "+":
@@ -12,7 +11,8 @@ def oper(op):
         if op[0] == "*":
             num *= int(op[1::])
         if op[0] == "/":
-            num /= int(op[1::]
-        op = input()
-        return  num
+            num /= int(op[1::])
+        print(num)
+        return oper(input())
+    
 print(oper(input()))
