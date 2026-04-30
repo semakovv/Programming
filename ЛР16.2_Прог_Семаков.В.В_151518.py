@@ -1,11 +1,18 @@
 from collections import deque
 
-def calc(op):
-    num = 0
-    stack = deque()
-    while op is not "stop":
+stack = deque()
+num = 0
+def oper(op):
+    while op != "stop":
         stack.append(op)
-        if op[0] is "+":
+        if op[0] == "+":
             num += int(op[1::])
-            print(num)
-
+        if op[0] == "-":
+            num -= int(op[1::])
+        if op[0] == "*":
+            num *= int(op[1::])
+        if op[0] == "/":
+            num /= int(op[1::]
+        op = input()
+        return  num
+print(oper(input()))
