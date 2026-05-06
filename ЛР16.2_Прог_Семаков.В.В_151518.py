@@ -29,7 +29,6 @@ def oper(COUNT, OP, NUM):
         COUNT *= NUM
     if OP == "/":
         COUNT /= NUM
-    return COUNT
         
 def unOper(COUNT, OP, NUM):
     if OP == "+":
@@ -41,6 +40,6 @@ def unOper(COUNT, OP, NUM):
     if OP == "/":
         COUNT *= NUM
 
-print(calc(count, oper))
+calc(count, oper)
 
 
