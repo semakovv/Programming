@@ -1,42 +1,46 @@
 from collections import deque
 
 count = 0
-oper = deque()
-unOper = deque()
+oper = None
+unOper = None
 
-def calc(COUNT, STR, OPER, UNOPER):
-    STR = input()
+
+def calc(COUNT, OPER):
+    STR = ""
     while STR != "stop":
-        op = STR[0]
-        num = STR[1::]
+        STR = input()
         count = COUNT
-        if STR is r"[+-*/]\s{1}\d+":
-            OPER.append(STR)
-            return oper(count, op, num)
+        op = STR[0]
+        num = int(STR[1::])
+        OPER = deque()
+        OPER.append(STR)
+        return oper(count, op, num)
         # if STR is "undo" and OPER is not None:
         #     save = OPER.pop()
         #     UNOPER.append(save)
         #     return unOper(count, )
 
 def oper(COUNT, OP, NUM):
-    if OP is "+":
+    if OP == "+":
         COUNT += NUM
-    if OP is "-":
+    if OP == "-":
         COUNT -= NUM
-    if OP is "*":
+    if OP == "*":
         COUNT *= NUM
-    if OP is "/":
+    if OP == "/":
         COUNT /= NUM
     return COUNT
         
 def unOper(COUNT, OP, NUM):
-    if OP is "+":
+    if OP == "+":
         COUNT -= NUM
-    if OP is "-":
+    if OP == "-":
         COUNT += NUM
-    if OP is "*":
+    if OP == "*":
         COUNT /= NUM
-    if OP is "/":
+    if OP == "/":
         COUNT *= NUM
+
+print(calc(count, oper))
 
 
