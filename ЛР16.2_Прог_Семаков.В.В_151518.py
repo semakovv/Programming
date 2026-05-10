@@ -5,7 +5,7 @@ def operPattern(ST):
     ptrn = re.findall(r"[+-/*]{1} \d+", ST)
     if (ptrn):
         return ST
-    
+
 def oper(ST, TOTAL):
 
     op = ST[0]
@@ -36,15 +36,10 @@ def unOper(ST, TOTAL):
         TOTAL *= num
     return op, num, TOTAL
 
-
-
-
 st = "+ 0"
 total = 0
 stackForOper = deque()
 stackForUnOper = deque()
-
-
 
 while st != "stop":
     st = input()
