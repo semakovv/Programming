@@ -19,7 +19,7 @@ def oper(ST, TOTAL):
         TOTAL *= num
     if op == "/":
         TOTAL /= num
-    return op, num, TOTAL
+    return TOTAL
 
 def unOper(ST, TOTAL):
 
@@ -34,7 +34,7 @@ def unOper(ST, TOTAL):
         TOTAL /= num
     if op == "/":
         TOTAL *= num
-    return op, num, TOTAL
+    return TOTAL
 
 st = "+ 0"
 total = 0
@@ -46,20 +46,19 @@ while st != "stop":
     print(total)
 
     if (operPattern(st)):
-        print(True)
         stackForOper.append(st)
-        oper(st, total)
+        total = oper(st, total)
         continue
 
     if st == "undo":
         save = stackForOper.pop()
         stackForUnOper.append(save)
-        unOper(save, total)
+        total = unOper(save, total)
         continue
 
     if st == "redo":
         save = stackForUnOper.pop()
-        oper(save, total)
+        total = oper(save, total)
         continue
 
 
