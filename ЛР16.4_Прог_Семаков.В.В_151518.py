@@ -1,7 +1,20 @@
 from collections import deque
 
-str = input()
+def addInDeque(D):
+    """
+    Добавление чисел в очередь
+    """
+    print("Введите последовательность чисел")
+    ST = input()
+    while ST != "stop":
+        if int(ST) > 0:
+            D.append(int(ST))
+            ST = input()
+        else:
+            D.appendleft(int(ST))
+            ST = input()
+    return D
 
-d = list(str)
-
-print(d)
+d1 = deque()
+d1 = addInDeque(d1)
+print(d1)
