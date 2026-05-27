@@ -2,7 +2,7 @@ from collections import deque
 
 def addInDeque(D):
     """
-    Добавление чисел в очередь
+    Добавление чисел в дек
     """
     print("Введите последовательность чисел")
     ST = input()
