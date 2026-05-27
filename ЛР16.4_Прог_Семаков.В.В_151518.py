@@ -7,7 +7,7 @@ def addInDeque(D):
     print("Введите последовательность чисел")
     ST = input()
     while ST != "stop":
-        if int(ST) > 0:
+        if int(ST) >= 0:
             D.append(int(ST))
             ST = input()
         else:
