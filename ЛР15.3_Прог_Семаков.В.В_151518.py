@@ -1,4 +1,5 @@
 import subprocess
+
 flag = True
 ip_area = input("Введите диапозон адрессов: ")
 print(ip_area)
