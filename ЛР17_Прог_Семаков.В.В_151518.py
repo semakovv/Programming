@@ -21,7 +21,6 @@ class sensor:
         value = self.number, str(self.currentValue)+"dB"
         return value
 
-    
 class flat:
     """
     Класс квартиры
@@ -60,7 +59,7 @@ class event:
         if self.status:
             return self.status, self.time
 
-class manager:
+class manage:
     """
     Класс события
     """
@@ -96,10 +95,5 @@ if __name__ == "__main__":
 
 "Проверка Класса управления"
 if __name__ == "__main__":
-    wr123 = manager("Предупреждение", datetime.now())
+    wr123 = manage("Предупреждение", datetime.now())
     print(wr123.showWarning())
-
-
-
-
-
