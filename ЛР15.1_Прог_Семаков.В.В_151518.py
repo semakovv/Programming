@@ -3,11 +3,11 @@ import argparse, os, re, datetime
 parser = argparse.ArgumentParser()
 
 parser.add_argument("fc", help="Консольный файловый менеджер")
-parser.add_argument("--create", "-c", type=str, help="Создание файла")
-parser.add_argument("--delete", "-d", type=str, help="Удаление файла")
-parser.add_argument("--read", "-r", type=str, help="Чтение файла")
-parser.add_argument("--replace", "-R", type=str, help="Изменение файла")
-parser.add_argument("--search", "-s", type=str, help="Поиск файла")
+parser.add_argument("-c", "--create", type=str, help="Создание файла")
+parser.add_argument("-d", "--delete", type=str, help="Удаление файла")
+parser.add_argument("-r", "--read", type=str, help="Чтение файла")
+parser.add_argument("-R", "--replace", type=str, help="Изменение файла")
+parser.add_argument("-s", "--search", type=str, help="Поиск файла")
 
 args = parser.parse_args()
 
