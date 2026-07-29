@@ -1,32 +1,34 @@
-import subprocess, re
+import subprocess
 
 flag = False
 ip_area = input("Введите диапозон адрессов: ")
 lst_ips = ip_area.split("-")
-print(lst_ips)
-for i in lst_ips:
-    ip_patern = re.findall(r"[1-255].", i)
-    if ip_patern:
-        flag = True
-        print("+")
-    else:
-        flag = False
-        print("-")
-        break
+# print(lst_ips)
+ip_first = lst_ips[0].split(".")
+ip_last = lst_ips[1].split(".")
+# print(ip_first, ip_last, sep = "\n")
+def ip_pattern(IP, FLAG):
+    for i in IP:
+        if 1 < int(i) < 255:
+            FLAG = True
+        else:
+            FLAG = False
+        return FLAG
 
-# lst_octets = []
-# for i in lst_ips:
-#     lst_octets.append(i.split("."))
-# # lst_octets = [lst_ips[i].split(".") for i in lst_ips] #как сдалить через генерацию???
-# print(lst_octets)
-# while flag:
-#     for i in lst_octets:
-#         for j in i:
-#             if j.isdigit() and 0 <= int(j) <= 255:
-#                 flag = True
-#             else:
-#                 print("Неверный ввод")
-#                 flag = False
-#                 break
-#     for a 
-#     result = subprocess.Popen(['print'])
+flag = ip_pattern(ip_first, flag)
+flag = ip_pattern(ip_last, flag)
+# print(flag)
+if flag:
+    for i in range(int(ip_first[-1]), int(ip_last[-1]) + 1):
+        ip = ip_first
+        ip[-1] = str(i)
+        ip = ".".join(ip)
+        process = subprocess.run(["ping", f"{ip}"], shell=True, stdout=subprocess.PIPE)
+        if process.returncode == 0:
+            print(ip)
+        # for j in process.stdout:
+            # print(j)
+            # print(process.stdout.strip())
+
+
+
