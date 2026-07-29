@@ -1,20 +1,32 @@
-import subprocess
+import subprocess, re
 
-flag = True
+flag = False
 ip_area = input("Введите диапозон адрессов: ")
-print(ip_area)
 lst_ips = ip_area.split("-")
 print(lst_ips)
-lst_octets = []
 for i in lst_ips:
-    lst_octets.append(i.split("."))
-# lst_octets = [lst_ips[i].split(".") for i in lst_ips] #как сдалить через генерацию???
-print(lst_octets)
-for i in lst_octets:
-    for j in i:
-        if j.isdigit() and 0 <= int(j) <= 255:
-            flag = True
-        else:
-            flag = False
-            break
-            print("Неверный ввод")
+    ip_patern = re.findall(r"[1-255].", i)
+    if ip_patern:
+        flag = True
+        print("+")
+    else:
+        flag = False
+        print("-")
+        break
+
+# lst_octets = []
+# for i in lst_ips:
+#     lst_octets.append(i.split("."))
+# # lst_octets = [lst_ips[i].split(".") for i in lst_ips] #как сдалить через генерацию???
+# print(lst_octets)
+# while flag:
+#     for i in lst_octets:
+#         for j in i:
+#             if j.isdigit() and 0 <= int(j) <= 255:
+#                 flag = True
+#             else:
+#                 print("Неверный ввод")
+#                 flag = False
+#                 break
+#     for a 
+#     result = subprocess.Popen(['print'])
