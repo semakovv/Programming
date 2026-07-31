@@ -17,7 +17,6 @@ def ip_pattern(IP, FLAG):
 
 flag = ip_pattern(ip_first, flag)
 flag = ip_pattern(ip_last, flag)
-# print(flag)
 if flag:
     for i in range(int(ip_first[-1]), int(ip_last[-1]) + 1):
         ip = ip_first
@@ -26,9 +25,8 @@ if flag:
         process = subprocess.run(["ping", f"{ip}"], shell=True, stdout=subprocess.PIPE)
         if process.returncode == 0:
             print(ip)
-        # for j in process.stdout:
-            # print(j)
-            # print(process.stdout.strip())
+else:
+    print("Неправильнный ввод")
 
 
 
