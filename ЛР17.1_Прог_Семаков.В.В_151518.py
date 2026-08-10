@@ -8,16 +8,20 @@ class hub:
     The centaral system procceses the data and make issues commands
     """
     def __init__(self, SENSOR, ACTUATOR):
-        self.database = {SENSOR.name: SENSOR.registration}
         self.statistics_list = []
         self.alert = ""
-        for i in self.database[SENSOR.name]:
-            if int(i) > 55:
-                self.statistics_list.append(f"{i} ШУМНО!!!")
-                self.alert = f"{i} ШУМНО!!!"
-                ACTUATOR.display(self.alert)
-            else:
-                self.statistics_list.append(f"{i} тихо...")
+        self.database = {"sensors": {f"{i.name}": i.noise_registration() for i in SENSOR}, "actuators": {f"{j.name}": self.noise_database() for j in ACTUATOR}}
+        # print(self.database["sensors"], self.database["actuators"])
+    def noise_database(self):
+        for i in self.database["sensors"].values():
+            for j in i:
+                if int(j) > 55:
+                    self.statistics_list = [j + " ШУМНО!!!"]
+                    self.alert = f"{j} ШУМНО!!!"
+                    # ACTUATOR.display(self.alert)
+                else:
+                    self.statistics_list = [j + " тихо..."]
+        return self.statistics_list
 
     def noise_statistics(self):
         return self.statistics_list
@@ -31,10 +35,10 @@ class noise_sensor:
     """
     def __init__(self, NAME):
         self.name = f"NS_{NAME}"
-        self.registration = input("Введите частоту: ")
-    def registration():
-        data = input("Введите частоту: ")
-        return data
+        self.registration = []
+    def noise_registration(self):
+        self.registration.append(input(f"Введите частоту для {self.name}: "))
+        return self.registration
 
 class noise_actuator:
     """
@@ -43,27 +47,35 @@ class noise_actuator:
     def __init__(self, NAME):
         self.name = f"NA_{NAME}"
     def display(DATA):
-        print(DATA)
-system_status = ""
+        if DATA:
+            print(DATA)
 
-parser = ap.ArgumentParser()
+# system_status = ""
 
-parser.add_argument("sh", help="Система умный дом")
-parser.add_argument("-a", "--activate", help="Запуск системы умный дом")
-parser.add_argument("-d", "--deactivate", help="Отключение системы умный дом")
+# parser = ap.ArgumentParser()
 
-arg = parser.parse_args()
+# parser.add_argument("sh", help="Система умный дом")
+# parser.add_argument("-a", "--activate", help="Запуск системы умный дом")
+# parser.add_argument("-d", "--deactivate", help="Отключение системы умный дом")
 
-if arg.sh:
-    if arg.activate:
-        system_status = "active"
-    if arg.deactivate:
-        system_status = "deactive"
+# arg = parser.parse_args()
+
+# if arg.sh:
+#     if arg.activate:
+#         system_status = "active"
+#     if arg.deactivate:
+#         system_status = "deactive"
 
 ns_1 = noise_sensor("1")
 na_1 = noise_actuator("1")
-print(ns_1.name)
-print(na_1.name)
-system_center = hub(ns_1, na_1)
+ns_2 = noise_sensor("2")
+na_2 = noise_actuator("2")
+# print(ns_1.name)
+# print(na_1.name)
+system_center = hub([ns_1, ns_2], [na_1, na_2])
+system_center.noise_database()
+print(system_center.database)
+print(system_center.alert)
+print(system_center.statistics_list)
 # while system_status == "active":
 #     pass
