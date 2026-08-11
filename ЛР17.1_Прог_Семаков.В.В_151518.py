@@ -7,13 +7,15 @@ class hub:
     """
     The centaral system procceses the data and make issues commands
     """
-    def __init__(self, SENSOR, ACTUATOR):
+    def __init__(self):
         self.statistics_list = []
         self.alert = ""
-        self.database = {"sensors": {f"{i.name}": i.noise_registration() for i in SENSOR}, "actuators": {f"{j.name}": self.noise_database() for j in ACTUATOR}}
-        # print(self.database["sensors"], self.database["actuators"])
-    def noise_database(self):
+        self.database = {}
+                # print(self.database["sensors"], self.database["actuators"])
+    def noise_database(self, SENSOR, ACTUATOR):
+        self.database = {"sensors": {f"{i.name}": i.noise_registration() for i in SENSOR}, "actuators": {f"{j.name}": self.statistics_list for j in ACTUATOR}}
         for i in self.database["sensors"].values():
+            print(i)
             for j in i:
                 if int(j) > 55:
                     self.statistics_list = [j + " ШУМНО!!!"]
@@ -21,7 +23,8 @@ class hub:
                     # ACTUATOR.display(self.alert)
                 else:
                     self.statistics_list = [j + " тихо..."]
-        return self.statistics_list
+        print(self.database)
+        return self.database
 
     def noise_statistics(self):
         return self.statistics_list
@@ -72,10 +75,7 @@ ns_2 = noise_sensor("2")
 na_2 = noise_actuator("2")
 # print(ns_1.name)
 # print(na_1.name)
-system_center = hub([ns_1, ns_2], [na_1, na_2])
-system_center.noise_database()
-print(system_center.database)
-print(system_center.alert)
-print(system_center.statistics_list)
+system_center = hub()
+system_center.noise_database([ns_1, ns_2], [na_1, na_2])
 # while system_status == "active":
 #     pass
