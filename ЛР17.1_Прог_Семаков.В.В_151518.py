@@ -10,21 +10,25 @@ class hub:
     def __init__(self):
         self.statistics_list = []
         self.alert = ""
-        self.database = {}
+        self.sensor_data = {}
+        self.actuator_data = {}
                 # print(self.database["sensors"], self.database["actuators"])
+
     def noise_database(self, SENSOR, ACTUATOR):
-        self.database = {"sensors": {f"{i.name}": i.noise_registration() for i in SENSOR}, "actuators": {f"{j.name}": self.statistics_list for j in ACTUATOR}}
-        for i in self.database["sensors"].values():
-            print(i)
+        self.sensor_data = {"sensors": {f"{i.name}": i.noise_registration() for i in SENSOR}}
+        for i in self.sensor_data["sensors"].values():
+            # print(i)
             for j in i:
+                # print(j)
                 if int(j) > 55:
                     self.statistics_list = [j + " ШУМНО!!!"]
                     self.alert = f"{j} ШУМНО!!!"
-                    # ACTUATOR.display(self.alert)
                 else:
                     self.statistics_list = [j + " тихо..."]
-        print(self.database)
-        return self.database
+        self.actuator_data = {"actuators": {f"{j.name}": self.statistics_list for j in ACTUATOR}}
+        print(self.sensor_data)
+        print(self.actuator_data)
+        return self.sensor_data, self.actuator_data
 
     def noise_statistics(self):
         return self.statistics_list
